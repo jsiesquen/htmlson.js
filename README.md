@@ -1,7 +1,8 @@
 <p><img src="http://i.imgur.com/s6beA4q.png" alt="N|Solid"></p>
 <h1>Features</h1>
 <ul>
-<li>Convert JSON array of objects into to HTML table</li>
+<li>Convert JSON array of objects into to HTML table!</li>
+<li>Convert HTML table into JSON object!</li>
 </ul>
 <p>Available configurations:</p>
 <ul>
@@ -28,6 +29,9 @@ npm install htmlson.js
     },
     debug: true
 }); 
+</code></pre>
+<p>Convert html table to JSON object:</p>
+<pre><code class="language-js">var obj = htmlson.toJson();
 </code></pre>
 <p>Add row:</p>
 <pre><code class="language-js">htmlson.addRow({

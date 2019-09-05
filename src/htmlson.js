@@ -1,5 +1,5 @@
 /*
- * htmlson.js 1.0 (Adalen VLADI, Redjan Ymeraj) | MIT
+ * htmlson.js v.1 (Adalen VLADI, Redjan Ymeraj) | MIT
  * Github: https://github.com/adalenv/htmlson.js
  */
 
@@ -122,20 +122,43 @@
             initialize();
         };
 
+        /**
+         * Convert html table to json
+         */
+        scope.toJson = function(){
+            var head = this.find('tr:first').get().map(function(row) {
+                return $(row).find('th').get().map(function(cell) {
+                    return $(cell).html();
+                });
+            });
+            var body = this.find('tr').not('tr:first').get().map(function(row) {
+                return $(row).find('td').get().map(function(cell) {
+                    return $(cell).html();
+                });
+            });
+
+            var a={};
+            a.head=head;
+            a.body=body;
+
+            return a;
+           
+        };
+
+
 
         /***** Start debug *****/
         if (configs.debug) {
             var log = function (l) {
                 console.log(l);
             };
-
-            log('debug: true');
-            log('object: ' + JSON.stringify(configs.data));
-            log('object depth: ' + getDepth(configs.data));
-            log('auto headers: ' + JSON.stringify(autoHeaderKeys));
-            log('headers set: ' + JSON.stringify(configs.headers));
-            log('table head: ' + thead);
-            log('table body: ' + tbody);
+            log('Debug: true');
+            log('Object: ' + JSON.stringify(configs.data));
+            log('Object depth: ' + getDepth(configs.data));
+            log('Auto headers: ' + JSON.stringify(autoHeaderKeys));
+            log('Headers set: ' + JSON.stringify(configs.headers));
+            log('Table head: ' + thead);
+            log('Table body: ' + tbody);
         }
         /***** End debug *****/
 
